@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/*
+  Design tokens for the "modern sketchbook" system.
+  Palette: clean near-white paper, bold near-black linework,
+  and four warm accents (mustard, sky, coral, sage) used as
+  confident small fills/doodles, never large gradients.
+*/
+@theme {
+  --color-paper: #ffffff;
+  --color-paper-alt: #f9f9fb;
+  --color-paper-dim: #f2f1f6;
+  --color-ink: #17161a;
+  --color-ink-soft: #4d4b56;
+  --color-ink-faint: #8d8b96;
+
+  --color-mustard: #eda72c;
+  --color-mustard-soft: #fbe4ad;
+  --color-sky: #57a5d9;
+  --color-sky-soft: #cbe7f7;
+  --color-blush: #ef7fa0;
+  --color-blush-soft: #fad0dd;
+  --color-sage: #6fb17a;
+  --color-sage-soft: #d3ecd6;
+
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-hand: 'Caveat', 'Segoe Print', cursive;
+
+  --shadow-sketch: 3px 4px 0 0 rgba(23, 22, 26, 0.9);
+  --shadow-card: 0 1px 2px rgba(23, 22, 26, 0.04), 0 10px 28px rgba(23, 22, 26, 0.07);
+  --shadow-card-hover: 0 4px 10px rgba(23, 22, 26, 0.06), 0 16px 36px rgba(23, 22, 26, 0.1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: var(--color-mustard-soft);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .font-hand {
+    font-family: var(--font-hand);
+  }
+
+  /* Applies a subtle hand-drawn wobble to illustration line art. */
+  .sketch-wobble {
+    filter: url(#pencil-roughen);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-dot-grid {
+    background-image: radial-gradient(var(--color-ink) 1px, transparent 1px);
+    background-size: 22px 22px;
+    opacity: 0.05;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
